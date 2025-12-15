@@ -9,3 +9,4 @@ export const CLOUD_MONGODB_URI = process.env.CLOUD_MONGODB_URI;
 export const NODE_ENV = process.env.NODE_ENV;
 export const JWT_SECRET = process.env.JWT_SECRET;
 export const JWT_EXPIRE_SECONDS = process.env.JWT_EXPIRE_SECONDS;
+export const JWT_COOKIE_EXPIRE_DAYS = process.env.JWT_COOKIE_EXPIRE_DAYS;

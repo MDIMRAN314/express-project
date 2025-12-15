@@ -3,6 +3,7 @@ import cors from "cors";
 import { PORT } from "./config/index.js";
 import authRouter from "./routes/authRoute.js";
 import dbConnection from "./config/db.js";
+import courseRouter from "./routes/courseRoute.js";
 
 const app = express();
 
@@ -24,5 +25,6 @@ const InitializeServer = async () => {
 };
 
 app.use("/api/v1", authRouter);
+app.use("/api/v1/course", courseRouter);
 
 InitializeServer();

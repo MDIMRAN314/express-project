@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import jwt from "jsonwebtoken";
 import { genSalt, compare, hash } from "bcryptjs";
 import { JWT_EXPIRE_SECONDS, JWT_SECRET } from "../config/index.js";
 
@@ -30,10 +31,11 @@ UserSchema.pre("save", async function () {
   const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
 });
+
 // Method to compare entered password with hashed password for login
-// UserSchema.methods.matchPassword = async function (enteredPassword) {
-//   return await compare(enteredPassword, this.password);
-// };
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  return await compare(enteredPassword, this.password);
+};
 
 // Method to sign in user and return JWT
 UserSchema.methods.getSignedJwtToken = function () {
@@ -42,6 +44,6 @@ UserSchema.methods.getSignedJwtToken = function () {
   });
 };
 
-const UserModel = model("User", UserSchema);
+const UserModel = model("user", UserSchema);
 
 export default UserModel;
